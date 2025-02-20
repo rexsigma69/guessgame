@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quadratic Equation Solver</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            display: flex; /* Centers using flexbox */
+            justify-content: center; /* Centers horizontally */
+            align-items: center; /* Centers vertically */
+            min-height: 100vh; /* Takes up the whole screen height */
+            margin: 0; /* Removes default margin */
+        }
+        .solver-container { /* Container for the solver */
+            text-align: center; /* Centers text inside */
+        }
+        input, button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 18px;
+        }
+        input {
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <div class="solver-container">
+        <h1>Quadratic Equation Solver</h1>
+
+        <p>Enter the coefficients of your quadratic equation (ax² + bx + c = 0):</p>
+
+        <label for="aInput">a:</label>
+        <input type="number" id="aInput"><br>
+
+        <label for="bInput">b:</label>
+        <input type="number" id="bInput"><br>
+
+        <label for="cInput">c:</label>
+        <input type="number" id="cInput"><br>
+
+        <button onclick="solveQuadratic()">Solve</button>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        function solveQuadratic() {
+            let a = parseFloat(document.getElementById("aInput").value);
+            let b = parseFloat(document.getElementById("bInput").value);
+            let c = parseFloat(document.getElementById("cInput").value);
+            let d = b * b - 4 * a * c;
+
+            let resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "";
+
+            if (d >= 0) {
+                let s = Math.sqrt(d);
+                let x1 = (-b - s) / (2 * a);
+                let x2 = (-b + s) / (2 * a);
+
+                if (x1 === x2) {
+                    resultsDiv.innerHTML = "<p>Solution: x = " + x1 + "</p>";
+                } else {
+                    resultsDiv.innerHTML = "<p>Solutions: x1 = " + x1 + ", x2 = " + x2 + "</p>";
+                }
+            } else {
+                resultsDiv.innerHTML = "<p>Solutions are not real numbers!</p>";
+            }
+        }
+    </script>
+</body>
+</html>
